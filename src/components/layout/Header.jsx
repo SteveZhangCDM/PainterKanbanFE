@@ -28,7 +28,7 @@ const Header = () => {
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             aria-label="Go to admin page"
           >
-            Admin Portal ➡️
+            Admin Portal
           </button>
         )}
       </div>
