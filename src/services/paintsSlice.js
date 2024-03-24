@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export const paintApi = createApi({
   reducerPath: "paintApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001/",
+    baseUrl,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
