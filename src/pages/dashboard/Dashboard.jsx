@@ -36,7 +36,7 @@ const Dashboard = () => {
 
       {/* Kanban */}
       <div className="flex justify-center items-start p-2 bg-gray-100 overflow-auto h-screen">
-        <div className="flex overflow-auto bg-gray-100 p-4 justify-center pl-8 ">
+        <div className="flex overflow-auto bg-gray-100 p-4 items-start">
           {colors.map((color) => (
             <Column key={color} color={color}>
               {statuses.map((status) => (
