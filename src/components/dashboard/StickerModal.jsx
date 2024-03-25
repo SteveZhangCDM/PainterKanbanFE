@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   useUpdatePaintStatusMutation,
@@ -11,13 +11,28 @@ const StickerModal = ({ paint, closeModal }) => {
 
   const [status, setStatus] = useState(paint.status);
   const [quantity, setQuantity] = useState(paint.quantity);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    setErrorMessage("");
+    if (status !== "out of stock" && quantity === 0) {
+      setErrorMessage("Wrong quantity or status");
+    } else if (status === "out of stock" && quantity > 0) {
+      setErrorMessage("Wrong quantity or status");
+    }
+  }, [status, quantity]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await updatePaintStatus({ color: paint.color, status }).unwrap();
-      await updatePaintInventory({ color: paint.color, quantity }).unwrap();
 
+    if (errorMessage) {
+      console.error("Submission blocked due to error:", errorMessage);
+      return;
+    }
+
+    try {
+      await updatePaintInventory({ color: paint.color, quantity }).unwrap();
+      await updatePaintStatus({ color: paint.color, status }).unwrap();
       closeModal();
     } catch (err) {
       console.error("Failed to update:", err);
@@ -50,9 +65,15 @@ const StickerModal = ({ paint, closeModal }) => {
             className="block w-full p-2 border rounded mb-4"
           />
 
+          {/* Error Message */}
+          {errorMessage && (
+            <div className="text-red-500 mb-4">{errorMessage}</div>
+          )}
+
           <button
             type="submit"
             className="py-2 px-4 bg-blue-500 text-white rounded"
+            disabled={!!errorMessage}
           >
             Update
           </button>

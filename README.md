@@ -21,13 +21,13 @@ The frontend is deployed to Netlify(https://painterkanban.netlify.app/) using Gi
 
 ### Backend Integration
 
-Backend Repository: PainterKanbanBE(https://github.com/SteveZhangCDM/PainterKanbanBE)
+Backend Repository: PainterKanbanBE(https://github.com/SteveZhangCDM/PainterKanbanFE)
 Backend Base Endpoint: https://painterkanbanbe.onrender.com
 
-### Getting Started in local
+### Getting Started
 
 To run this project locally, follow these steps:
 
-- Clone the repository: git clone https://github.com/YourGitHubUsername/PainterKanbanFE.git
+- Clone the repository: git clone https://github.com/SteveZhangCDM/PainterKanbanFE.git
 - Install dependencies: npm install
 - Start the development server: npm run dev
